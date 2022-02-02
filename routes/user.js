@@ -71,7 +71,7 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     const data = await User.aggregate([
       { $match: { createdAt: { $gte: lastYear } } },
       { $project: { month: { $month: "$createdAt" } } },
-      { $group: { _id: "$month", total: { $sum: 1 } } }
+      { $group: { _id: "$month", total: { $sum: 1 } } },
     ]);
     res.status(200).json(data);
   } catch (error) {
