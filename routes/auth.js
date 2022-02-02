@@ -26,7 +26,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    console.log("---user---: ", user);
     if (!user) {
       return res.status(401).json("Wrong credentials");
     }
@@ -43,8 +42,6 @@ router.post("/login", async (req, res) => {
       expiresIn: "3d",
     });
     const { password, ...rest } = user._doc;
-    console.log("rest: ", rest);
-    console.log("accessToken: ", accessToken);
     res.status(200).json({ ...rest, accessToken });
   } catch (error) {
     res.status(500).json(error);
