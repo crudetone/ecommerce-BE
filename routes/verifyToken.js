@@ -23,7 +23,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
     } else {
-      res.status(403).json("You are not alloed to do that 1");
+      res.status(403).json("You are not allowed to do that 1");
     }
   });
 };
@@ -34,7 +34,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
     if (user.isAdmin) {
       next();
     } else {
-      res.status(403).json("You are not alloed to do that 2");
+      res.status(403).json("You are not allowed to do that 2");
     }
   });
 };
