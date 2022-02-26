@@ -5,10 +5,13 @@ const verifyToken = (req, res, next) => {
 
   if (authHeader) {
     const token = authHeader.split(" ")[1];
+    console.log('token: ', token);
+    console.log('process.env.JWT_SECRET: ', process.env.JWT_SECRET);
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
         return res.status(403).json("Token is not valid!");
       } else {
+        console.log('user: ', user);
         req.user = user;
         next();
       }
